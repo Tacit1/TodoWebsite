@@ -1,0 +1,6 @@
+.spacer { /* Klasse spacer wird aufgerufen um Buttons rechtsbündig zu machen */
+  flex: 1 1 auto;
+}
+button {
+  margin: 1%;
+}
