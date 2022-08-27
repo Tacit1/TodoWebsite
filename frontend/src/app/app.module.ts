@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from "@angular/material/icon";
+import {ScheduleModule} from "@syncfusion/ej2-angular-schedule";
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,7 +29,9 @@ import { HabitsComponent } from './habits/habits.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    ScheduleModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
