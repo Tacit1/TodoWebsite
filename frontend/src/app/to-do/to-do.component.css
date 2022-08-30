@@ -1,9 +1,10 @@
 *{
   font-family: Roboto;
 }
-.header {
+.heading-section {
   background-color: #FF4081;
   padding: 80px;
+  padding-bottom: 150px;
   text-align: center;
 }
 h1 {
