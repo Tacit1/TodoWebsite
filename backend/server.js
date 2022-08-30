@@ -1,4 +1,5 @@
 const express = require('express');     //express Modul wird eingebunden
+const cors = require('cors');
 const routes = require('./routes');     //Datei routes wird eingebunden
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -6,26 +7,10 @@ require('dotenv').config();
 const app = express();
 const PORT = 3000;
 
-app.use(express.json());                // alle Responses die wir bekommen, wandeln wir in JSON um
+app.use(express.json());// alle Responses die wir bekommen, wandeln wir in JSON um
+// enable cors for all requests
+app.use(cors());
 app.use('/', routes);                   // hier das was man oben als Datei eingebunden hat
-
-app.use(function (req, res, next) {
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', '*');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
-});
 
 // connect to mongoDB
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });

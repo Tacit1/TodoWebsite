@@ -1,0 +1,14 @@
+db.calendar.insertMany([
+    {
+        "username": "Helene",
+        "name": "Urlaub",
+        "StartTime": new Date("2022-10-15T11:25"),
+        "EndTime": new Date("2022-10-15T13:25")
+    },
+    {
+            "username": "Hans",
+            "name": "Haus bauen",
+            "StartTime": new Date("2022-9-15T11:25"),
+            "EndTime": new Date("2022-9-15T13:25")
+        }
+])

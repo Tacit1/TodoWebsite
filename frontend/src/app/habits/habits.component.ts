@@ -8,7 +8,9 @@ import {Member} from "../shared/member";
   styleUrls: ['./habits.component.css']
 })
 export class HabitsComponent implements OnInit {
-members!: Member[];
+  username! : string;
+  members!: Member[];
+
   constructor(private bs: BackendService) {}
 
   ngOnInit(): void {

@@ -1,12 +1,20 @@
 const express = require('express');     //express Modul wird eingebunden
 const router = express.Router();        //Paket aus dem express modul wird eingebunden. Hiermit werden anfragen verwaltet
 const Member = require('./models/members');
+const Calendar = require ('./models/calendar');
 
 // get all members
 router.get('/members', async(req, res) => {
     const allMembers = await Member.find();
     console.log(allMembers);
     res.send(allMembers);       //Array aus allen Members Objekten
+});
+
+// get all calendar entries
+router.get('/calendar', async(req, res) => {
+    const allcalendarentries = await Calendar.find();
+    console.log(allcalendarentries);
+    res.send(allcalendarentries);       //Array aus allen Members Objekten
 });
 
 // get one member via id. In Postman z.B. eingeben GET http://localhost:3000/members/6308a89f67202dcef9316514. hinten steht die ID nach der gesucht wird, davor die Datenbank in der Gesucht wird
@@ -54,7 +62,7 @@ router.patch('/members/:id', async(req, res) => {
         await Member.updateOne({ _id: req.params.id }, member);
         res.send(member)
     } catch {
-        res.status(404)
+        res.status(404);
         res.send({ error: "Member does not exist!" })
     }
 });

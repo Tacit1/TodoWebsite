@@ -7,6 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from "@angular/material/icon";
 import { ScheduleModule } from "@syncfusion/ej2-angular-schedule";
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,6 +18,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { ToDoComponent } from './to-do/to-do.component';
 import { HabitsComponent } from './habits/habits.component';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,8 @@ import { LoginComponent } from './login/login.component';
     CalendarComponent,
     ToDoComponent,
     HabitsComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,10 @@ import { LoginComponent } from './login/login.component';
     MatButtonModule,
     MatIconModule,
     ScheduleModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,13 @@
+*{
+  font-family: Roboto;
+}
+.header {
+  background-color: #FF4081;
+  padding: 80px;
+  text-align: center;
+}
+h1 {
+  color: white;
+  font-weight: bold;
+  text-shadow: 0px 1px 2px #26282B;
+}
