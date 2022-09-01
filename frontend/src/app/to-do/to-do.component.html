@@ -20,15 +20,16 @@
 <section class="section">
   <div class="container">
     <div class="todos-list">
-      <div class="todo-item" *ngFor="let todo of todos">
-        <input type="checkbox" class="todo-checkbox" name="scales" [checked]="todo.completed">
+      <div class="todo-item" *ngFor="let todo of todos" (deleteClicked)="deleteTodo(todo)">
+        <input type="checkbox" class="todo-checkbox" name="scales"
+               [checked]="todo.completed">
         <div class="todo-text">
           {{todo.text}}
         </div>
         <div class="todo-controls-box">
-          <div class="delete-button">
+          <button class="deleteButton" onclick="onDeleteClicked()">
             <i class="material-icons">delete</i>
-          </div>
+          </button>
         </div>
       </div>
   </div>

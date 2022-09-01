@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Todo} from "../shared/todo.model";
 import {TodoService} from "../shared/todo.service";
 import {NgForm} from "@angular/forms";
@@ -9,7 +9,9 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./to-do.component.css']
 })
 export class ToDoComponent implements OnInit {
-  todos!: Todo[]
+  todos!: Todo[];
+  @Input() todo!: Todo;
+  @Output() deleteClicked: EventEmitter<void> = new EventEmitter();
 
   constructor(private todoService: TodoService) { }
 
@@ -17,9 +19,16 @@ export class ToDoComponent implements OnInit {
     this.todos = this.todoService.getAllTodos()
   }
   onFormSubmit(form: NgForm) {
-    if (form.invalid) return alert ("Input can't be empty");
     console.log(form);
-
+    if (form.invalid) return alert ("Input can't be empty");
     this.todoService.addTodo(new Todo (form.value.text));
+    form.reset();
+  }
+  onDeleteClicked() {
+    this.deleteClicked.emit()
+  }
+  deleteTodo(todo:Todo){
+    const index = this.todos.indexOf(todo);
+    this.todoService.deleteTodo(index);
   }
 }

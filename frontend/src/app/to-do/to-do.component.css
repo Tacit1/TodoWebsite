@@ -20,7 +20,6 @@ h1 {
   box-shadow: 0 4px 12px #888888;
 }
 .input {
-
   width: 85%;
   padding: 3.5px 0 3.5px 0;
   margin-right: 2%;
@@ -43,10 +42,19 @@ input[type=checkbox]:checked + .todo-text {
   color: lightgray;
 }
 i.material-icons {
+  display: flex;
   font-size: 16px;
   color: lightgray;
-  padding-left: 10px;
 }
 i.material-icons:hover {
   color:grey;
 }
+.deleteButton {
+  display: flex;
+  justify-content: center;
+  margin-left: 20px;
+  border: 1px solid #f2f3f5;
+  border-radius: 50%;
+  max-width: 22px;
+}
+
