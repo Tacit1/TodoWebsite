@@ -1,9 +1,6 @@
-*{
-  font-family: Roboto;
-}
 .heading-section {
   background-color: #FF4081;
-  padding: 80px;
+  padding: 100px;
   padding-bottom: 150px;
   text-align: center;
 }
@@ -11,4 +8,45 @@ h1 {
   color: white;
   font-weight: bold;
   text-shadow: 0px 1px 2px #26282B;
+}
+.container {
+  max-width: 800px;
+}
+.add-todo-box{
+  padding: 25px;
+  border-radius: 4px;
+  margin-top: -68px;
+  background-color: white;
+  box-shadow: 0 4px 12px #888888;
+}
+.input {
+
+  width: 85%;
+  padding: 3.5px 0 3.5px 0;
+  margin-right: 2%;
+}
+.section {
+  padding: 20px;
+}
+.todo-item {
+  display: flex;
+  font-size: 18px;
+  padding: 15px;
+  border-bottom: 1px solid #f2f3f5;
+}
+.todo-checkbox {
+  margin-right: 10px;
+  min-height: 20px;
+  min-width: 20px;
+}
+input[type=checkbox]:checked + .todo-text {
+  color: lightgray;
+}
+i.material-icons {
+  font-size: 16px;
+  color: lightgray;
+  padding-left: 10px;
+}
+i.material-icons:hover {
+  color:grey;
 }

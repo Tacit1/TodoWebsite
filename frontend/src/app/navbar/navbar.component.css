@@ -4,4 +4,7 @@
 button {
   margin: 1%;
 }
+button:hover {
+  background-color: #D81B60;
+}
 

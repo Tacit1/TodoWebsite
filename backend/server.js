@@ -7,10 +7,9 @@ require('dotenv').config();
 const app = express();
 const PORT = 3000;
 
-app.use(express.json());// alle Responses die wir bekommen, wandeln wir in JSON um
-// enable cors for all requests
-app.use(cors());
-app.use('/', routes);                   // hier das was man oben als Datei eingebunden hat
+app.use(express.json());            // alle Responses die wir bekommen, wandeln wir in JSON um
+app.use(cors());                    // enable cors for all requests
+app.use('/', routes);               // hier das was man oben als Datei eingebunden hat
 
 // connect to mongoDB
 mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true });

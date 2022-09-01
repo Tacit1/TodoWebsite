@@ -1,19 +1,36 @@
 <app-navbar></app-navbar>
 <section class="heading-section">
-  <h1>To Do's</h1>
+  <h1>To do's</h1>
 </section>
 
 <div class="container">
-  <form>
-    <h2>New Todo</h2>
-    <div class="field is-grouped">
-      <p class="control is-expanded">
-        <input class="input" type="text" placeholder="Type todo text here">
-      </p>
-      <p class="control">
-        <a class="button is-life">
-        </a>
-      </p>
-    </div>
-  </form>
+  <div class="add-todo-box">
+        <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
+          <h2>New to do</h2>
+          <div class="field">
+            <div class="control">
+              <input ngModel required name="text" type="text" class="input" placeholder="Type to do text here">
+              <button type="submit" class="btn btn-secondary btn-sm"> +  Add</button>
+            </div>
+          </div>
+        </form>
+  </div>
 </div>
+
+<section class="section">
+  <div class="container">
+    <div class="todos-list">
+      <div class="todo-item" *ngFor="let todo of todos">
+        <input type="checkbox" class="todo-checkbox" name="scales" [checked]="todo.completed">
+        <div class="todo-text">
+          {{todo.text}}
+        </div>
+        <div class="todo-controls-box">
+          <div class="delete-button">
+            <i class="material-icons">delete</i>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
+</section>
