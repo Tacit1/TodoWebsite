@@ -2,35 +2,32 @@ const express = require('express');     //express Modul wird eingebunden
 const router = express.Router();        //Paket aus dem express modul wird eingebunden. Hiermit werden anfragen verwaltet
 const Member = require('./models/members');
 const Calendar = require ('./models/calendar');
-const {check, validationResult} = require ('express-validator/check');
-const expressValidator = require ('express-validator');
-const {isEmpty} = require('express-validator');
+const {check, validationResult} = require ('express-validator');
+const jwt = require('jsonwebtoken')
+const expressJwt = require('express-jwt')
 
-router.use(expressValidator({
-        customValidators: {
-            isUsernameAvailable(username) {
-                return new Promise((resolve, reject) => {
-                    Member.findOne({ username: username }, (err, member) => {
-                        if (err) throw err;
-                        if(member == null) {
-                            resolve();
-                        } else {
-                            reject();
-                        }
-                    });
-                });
+
+//custom validator to check if username is already used (for signup)
+const checkUsernameExists = (value) => {
+    return new Promise((resolve, reject) => {
+        Member.findOne({ username: value }, (err, user) => {
+            if (user) {
+                reject('already in use');
             }
-        }
+            resolve();
+        });
     })
-);
+}
 //signup
-router.post('/signup',(req, res) => {
+router.post('/signup',[
+    check('fullname', 'Name is required').notEmpty(),
+    check('username', 'Username is required').notEmpty(),
+    check('username', 'Username already in use').custom(checkUsernameExists),
+    check('password', 'Password is required').notEmpty()
+        ], function (req, res, next) {
+
     const member = new Member(req.body)
     const errors = validationResult(req)
-
-    req.check('username', 'Username is required').notEmpty();
-    req.check('username', 'Username already in use').isUsernameAvailable();
-    req.check('password', 'Password is required').notEmpty();
 
     if (!errors.isEmpty()){
         return res.status(400).json({
@@ -50,69 +47,53 @@ router.post('/signup',(req, res) => {
     })
 })
 
+//login
+router.post('/login',async(req, res) => {
+ const{username, password} = req.body
 
-// get all members
-router.get('/members', async(req, res) => {
-    const allMembers = await Member.find();
-    console.log(allMembers);
-    res.send(allMembers);       //Array from all Members objects
-});
+    Member.findOne({username}, (err, user) => {
+     if(err|| !user) {
+         return res.status(400).json ({
+             error:"Username was not found"
+         })
+     }
+     //Authenticate user
+        if (!user.authenticate){
+            return res.status(400).json({
+                error:"Username and password do not match"
+            })
+        }
+
+        //create token
+            const token = jwt.sign({_id: user._id}, process.env.SECRET)
+
+        //Put token in cookie
+        res.cookie('token', token,{expires: new Date()+1})
+
+        //Send response to frontend
+        const {_id, username} = user
+        return res.json({
+            token,
+            user: {
+                _id,
+                username
+            }
+        })
+    })
+})
+
+router.post('/logout',async(req, res) => {
+    res.clearCookie('token')
+    return res.json({
+        message: "User signout successful"
+    })
+})
 
 // get all calendar entries
 router.get('/calendar', async(req, res) => {
     const allcalendarentries = await Calendar.find();
     console.log(allcalendarentries);
     res.send(allcalendarentries);
-});
-
-// get one member via id. In Postman z.B. eingeben GET http://localhost:3000/members/6308a89f67202dcef9316514. hinten steht die ID nach der gesucht wird, davor die Datenbank in der Gesucht wird
-router.get('/members/:id', async(req, res) => {
-    try {
-        const member = await Member.findOne({ _id: req.params.id });
-        console.log(req.params);
-        res.send(member);
-    } catch {
-        res.status(404);
-        res.send({
-            error: "Member does not exist!"
-        });
-    }
-})
-
-// post one member  (dafür in Postman in den Body die Postanfrage stellen so wie sie bei get angezeigt wird, ohne ID)
-router.post('/members', async(req, res) => {
-    const newMember = new Member({
-        fullname: req.body.forename,
-        username: req.body.surname,
-        password: req.body.email
-    })
-    await newMember.save();
-    res.send(newMember);
-});
-
-// update one member (in Postman patch, dann localhost:Portnummer/dbName/IDwelcheVerändertWerdenSoll und dann wie bei Post im Bodz eintragen zu was es geändert werden soll)
-router.patch('/members/:id', async(req, res) => {
-    try {
-        const member = await Member.findOne({ _id: req.params.id })
-
-        if (req.body.fullname) {
-            member.forename = req.body.forename
-        }
-
-        if (req.body.username) {
-            member.surname = req.body.surname
-        }
-
-        if (req.body.password) {
-            member.email = req.body.email
-        }
-
-        await Member.updateOne({ _id: req.params.id }, member);
-        res.send(member)
-    } catch {
-        res.status(404);
-        res.send({ error: "Member does not exist!" })
-    }
 });
 
 module.exports = router;

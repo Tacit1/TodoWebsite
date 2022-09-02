@@ -5,6 +5,7 @@ import { SignupComponent } from "./signup/signup.component";
 import { CalendarComponent } from "./calendar/calendar.component";
 import { ToDoComponent } from "./to-do/to-do.component";
 import { NavbarComponent } from "./navbar/navbar.component";
+import { WelcomepageComponent} from "./welcomepage/welcomepage.component";
 
 const routes: Routes = [
   { path: 'Login', component: LoginComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'Navbar', component: NavbarComponent},
   { path: 'Calendar', component: CalendarComponent}, //Routing für Navbar Module
   { path: 'ToDo', component: ToDoComponent},
+  { path: 'Welcome', component: WelcomepageComponent}
 ];
 
 @NgModule({

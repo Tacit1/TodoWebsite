@@ -15,7 +15,6 @@ export class ToDoComponent implements OnInit {
   @Output() deleteClicked: EventEmitter<void> = new EventEmitter();
 
   constructor(private todoService: TodoService, private backendService: BackendService) { }
-
   myObserver = {
     next: (x: Todo[]) => this.todos=x,
     error: (err: Error) => console.error('Observer got an error: ' + err),

@@ -18,6 +18,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { ToDoComponent } from './to-do/to-do.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { WelcomepageComponent } from './welcomepage/welcomepage.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { SignupComponent } from './signup/signup.component';
     CalendarComponent,
     ToDoComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    WelcomepageComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

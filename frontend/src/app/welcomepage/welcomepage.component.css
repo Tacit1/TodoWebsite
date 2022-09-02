@@ -1,0 +1,14 @@
+.fullscreen {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background: #FF4081;
+}
+.image {
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+}
