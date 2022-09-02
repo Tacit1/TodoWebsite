@@ -6,23 +6,23 @@
         <h1 class="text-header1">Welcome to Next Plan </h1>
         <h3 class="text-header2">The planner website for all calendar entries and todos </h3>
 
-        <form action="" class="mt-5 p-5">
+        <form #SignUpform="ngForm" >
           <h3 class="text-info mb-3">Sign Up</h3>
           <div class="form-floating mb-3">
 
           <label for="inputFullname" class="form-label">Full name</label>
-          <input type="username" class="form-control" id="inputFullname" name="fullname" [(ngModel)]="name">
+          <input type="username" class="form-control" id="inputFullname" name="fullname" ngModel>
         </div>
         <div class="form-floating mb-3">
           <label for="inputUsername" class="form-label">Username</label>
-          <input type="username" class="form-control" id="inputUsername" name="username" [(ngModel)]="username">
+          <input type="username" class="form-control" id="inputUsername" name="username" ngModel>
         </div>
         <div class="form-floating mb-3">
           <label for="inputPassword" class="form-label">Password</label>
-          <input type="password" class="form-control" id="inputPassword" name="password" [(ngModel)]="password">
+          <input type="password" class="form-control" id="inputPassword" name="password" ngModel>
         </div>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <button routerLink="../Welcome" class="btn btn-info me-md-2" type="button" (click)="signup()">Register</button>
+          <button class="btn btn-info me-md-2" type="button" (click)="signup(SignUpform)">Register</button>
         </div>
           <h4>Already have an account?</h4>
         <a routerLink="../Login" class="text-info" style="text-decoration:none;">Login here</a>

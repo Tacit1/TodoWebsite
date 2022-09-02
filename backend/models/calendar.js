@@ -7,4 +7,4 @@ const schema = new mongoose.Schema({
     EndTime: String,
 });
 
-module.exports = mongoose.model('calendar', schema);
+module.exports = mongoose.model('Calendar', schema);
