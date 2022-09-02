@@ -1,8 +1,3 @@
 <app-navbar></app-navbar>
-<div *ngIf="username">      <!-- Nur wenn ein Username existiert wird der scheduler angezeigt-->
   <ejs-schedule></ejs-schedule>
-</div>
-<div *ngIf="!username">      <!-- -->
-  <a routerLink="" class="text-info" style="text-decoration:none;">Sign up here</a>
-  <a routerLink="../Login" class="text-info" style="text-decoration:none;">Login here</a>
-</div>
+

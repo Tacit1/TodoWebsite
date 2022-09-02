@@ -28,11 +28,11 @@ export class ToDoComponent implements OnInit {
   onFormSubmit(form: NgForm) {
     console.log(form);
     if (form.invalid) return alert ("Input can't be empty");
-    //this.backendService.addTodo(new Todo (form.value.text));
+    this.todoService.addTodo(new Todo (form.value.text));       //change that to this.backendService otherwise its not working
     form.reset();
   }
   deleteTodo(todo:Todo){
     const index = this.todos.indexOf(todo);
-    this.todoService.deleteTodo(index);
+    this.todoService.deleteTodo(index);                       //change that to backendService otherwise its not working
   }
 }
