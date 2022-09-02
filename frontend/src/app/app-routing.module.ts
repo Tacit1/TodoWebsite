@@ -6,6 +6,7 @@ import { CalendarComponent } from "./calendar/calendar.component";
 import { ToDoComponent } from "./to-do/to-do.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { WelcomepageComponent} from "./welcomepage/welcomepage.component";
+import { LogoutComponent} from "./logout/logout.component";
 
 const routes: Routes = [
   { path: 'Login', component: LoginComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'Navbar', component: NavbarComponent},
   { path: 'Calendar', component: CalendarComponent}, //Routing für Navbar Module
   { path: 'ToDo', component: ToDoComponent},
-  { path: 'Welcome', component: WelcomepageComponent}
+  { path: 'Welcome', component: WelcomepageComponent},
+  { path: 'Logout', component: LogoutComponent }
 ];
 
 @NgModule({
