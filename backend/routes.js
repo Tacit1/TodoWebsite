@@ -2,8 +2,8 @@ const express = require('express');     //express Modul wird eingebunden
 const router = express.Router();        //Paket aus dem express modul wird eingebunden. Hiermit werden anfragen verwaltet
 const Member = require('./models/members');
 const Calendar = require ('./models/calendar');
-const {check, validationResult} = require ('express-validator');
-const {body} = require ('express-validator');
+const {check, validationResult} = require ('express-validator/check');
+const expressValidator = require ('express-validator');
 const {isEmpty} = require('express-validator');
 
 router.use(expressValidator({
