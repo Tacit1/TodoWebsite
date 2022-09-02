@@ -4,7 +4,7 @@ const schema = new mongoose.Schema({
     username: String,
     name: String,
     StartTime: String,
-    EndTime: String
+    EndTime: String,
 });
 
 module.exports = mongoose.model('calendar', schema);

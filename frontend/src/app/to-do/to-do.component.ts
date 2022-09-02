@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Todo} from "../shared/todo.model";
 import {TodoService} from "../shared/todo.service";
 import {NgForm} from "@angular/forms";
+import {BackendService} from "../shared/backend.service";
 
 @Component({
   selector: 'app-to-do',
@@ -13,19 +14,22 @@ export class ToDoComponent implements OnInit {
   @Input() todo!: Todo;
   @Output() deleteClicked: EventEmitter<void> = new EventEmitter();
 
-  constructor(private todoService: TodoService) { }
+  constructor(private todoService: TodoService, private backendService: BackendService) { }
+
+  myObserver = {
+    next: (x: Todo[]) => this.todos=x,
+    error: (err: Error) => console.error('Observer got an error: ' + err),
+    complete: () => console.log('Observer got a complete notification'),
+  };
 
   ngOnInit(): void {
-    this.todos = this.todoService.getAllTodos()
+    this.backendService.getAllTodos().subscribe(this.myObserver);
   }
   onFormSubmit(form: NgForm) {
     console.log(form);
     if (form.invalid) return alert ("Input can't be empty");
-    this.todoService.addTodo(new Todo (form.value.text));
+    //this.backendService.addTodo(new Todo (form.value.text));
     form.reset();
-  }
-  onDeleteClicked() {
-    this.deleteClicked.emit()
   }
   deleteTodo(todo:Todo){
     const index = this.todos.indexOf(todo);

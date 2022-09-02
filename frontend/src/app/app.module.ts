@@ -16,7 +16,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ToDoComponent } from './to-do/to-do.component';
-import { HabitsComponent } from './habits/habits.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 
@@ -26,7 +25,6 @@ import { SignupComponent } from './signup/signup.component';
     NavbarComponent,
     CalendarComponent,
     ToDoComponent,
-    HabitsComponent,
     LoginComponent,
     SignupComponent
   ],

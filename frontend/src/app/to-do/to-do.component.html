@@ -27,8 +27,8 @@
           {{todo.text}}
         </div>
         <div class="todo-controls-box">
-          <button class="deleteButton" onclick="onDeleteClicked()">
-            <i class="material-icons">delete</i>
+          <button class="deleteButton" (click)="deleteTodo(todo)">
+            <i class="material-icons" >delete</i>
           </button>
         </div>
       </div>
