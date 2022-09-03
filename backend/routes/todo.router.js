@@ -11,6 +11,17 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/user/:id', async (req, res) => {
+  try{
+    const {id} = req.params;
+    let todosForUser = await Todo.find({userId: id});
+    return res.send(todosForUser);
+  }catch(error){
+    console.log("error getting todos for user", error)
+    res.status(500).send("Error getting todos for user");
+  }
+})
+
 router.post('/', async (req , res) => {
     try {
       const {userId, username, text, completed} = req.body;
@@ -36,9 +47,10 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   try {
-    let deleted = await Todo.delete({_id: req.params.id});
+    let deleted = await Todo.deleteOne({_id: req.params.id});
     res.send({message: "deleted", deleted});
   } catch (error) {
+    console.log("error", error);
     res.status(500).send("Error deleting the Todo");
   }
 })

@@ -5,7 +5,7 @@
 
 <div class="container">
   <div class="add-todo-box">
-        <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
+        <form #todoForm="ngForm" (ngSubmit)="onFormSubmit(todoForm)">
           <h2>New to do</h2>
           <div class="field">
             <div class="control">
@@ -22,13 +22,13 @@
     <div class="todos-list">
       <div class="todo-item" *ngFor="let todo of todos" (deleteClicked)="deleteTodo(todo)">
         <input type="checkbox" class="todo-checkbox" name="scales"
-               [checked]="todo.completed">
+               [checked]="todo.completed" (change)="todoStatusChange($event, todo._id)">
         <div class="todo-text">
           {{todo.text}}
         </div>
         <div class="todo-controls-box">
-          <button class="deleteButton" (click)="deleteTodo(todo)">
-            <i class="material-icons" >delete</i>
+          <button class="deleteButton" (click)="deleteTodo(todo._id)">
+            <i class="material-icons">delete</i>
           </button>
         </div>
       </div>
